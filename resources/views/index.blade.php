@@ -11,8 +11,8 @@
                     <h4>Todas as Postagens</h4>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <a href="{{route('posts.create')}}" class="btn btn-success mx-1">Adicionar</a>
-                    <a href="#" class="btn btn-warning mx-1">Destruído</a>
+                    <a href="{{route('posts.create')}}" class="btn btn-success mx-1">Criar</a>
+                    <a href="#" class="btn btn-warning mx-1">Destruir</a>
                 </div>
 
             </div>
