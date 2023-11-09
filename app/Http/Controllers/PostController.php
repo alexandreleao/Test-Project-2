@@ -20,7 +20,8 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        //Carregamento das categorias
         $categories = Category::all();
         return view('create',compact('categories'));
     }
@@ -30,6 +31,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //Validações
       $request->validate([
         'image' => ['required', 'max:2028', 'image'],
         'title' => ['required', 'max:255'],
@@ -37,8 +39,20 @@ class PostController extends Controller
         'description' => ['required'],
       ]);
 
+     //Upload da imagem
+
+     $fileName = time().'_'.$request->image->getClientOriginalName(); 
+     $filePath = $request->image->storeAs('uploads', $fileName, 'public');
+     
+     //Criar o post
      $post = new Post();
+     $post->title = $request->title;
+     $post->category_id = $request->category_id;
+     $post->description = $request->description;
+     $post->image = $filePath;
+     $post->save();
     
+     return redirect()->route('posts.index');
     }
 
     /**
