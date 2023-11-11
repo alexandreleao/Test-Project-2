@@ -33,23 +33,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($posts as $post)
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{$post->id}}</th>
                         <td>
-                            <img src="https://picsum.photos/200" alt="" width="80">
+                            <img src="{{asset($post->image)}}" alt="" width="80">
                         </td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</td>
-                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        </td>
-                        <td>News</td>
-                        <td>10/10/2022</td>
+                        <td>{{$post->title}}</td>
+                        <td>{{$post->description}}</td>
+                        <td>{{$post->category_id}}</td>
+                        <td>{{date('d/m/Y', strtotime($post->created_at))}}</td>
                         <td>
                             <a href="#" class="btn-sm btn-success">Listar</a>
                             <a href="#" class="btn-sm btn-primary">Editar</a>
                             <a href="#" class="btn-sm btn-danger">Excluir</a>
                         </td>
-
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
