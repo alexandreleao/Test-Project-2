@@ -45,7 +45,7 @@
                         <td>{{date('d/m/Y', strtotime($post->created_at))}}</td>
                         <td>
                             <a href="#" class="btn-sm btn-success">Listar</a>
-                            <a href="#" class="btn-sm btn-primary">Editar</a>
+                            <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary">Editar</a>
                             <a href="#" class="btn-sm btn-danger">Excluir</a>
                         </td>
                     </tr>

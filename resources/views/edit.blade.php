@@ -21,24 +21,29 @@
         <div class="card-body">
           <form action="">
             <div class="form-group">
+               <div>
+                 <img style="width: 200px" src="{{asset($post->image)}}" alt="">
+               </div>
                 <label for="" class="form-label">Imagem</label>
                 <input type="file" class="form-control">
             </div>
             <div class="form-group">
                 <label for="" class="form-label">Título</label>
+                <input type="text" class="form-control" value="{{$post->title}}">
+            </div>
+            <div class="form-group">
+                <label for="" class="form-label">Categoria</label>
                <select name="" id="" class="form-control">
-                   <option value="">Test 1</option>
-                   <option value="">Test 2</option>
-                   <option value="">Test 3</option>
+                <option value="">Select</option>
+                   @foreach($categories as $category)
+                    <option {{$category->id == $post->category_id ? 'selected' : ''}}value="{{ $category->id }}">{{$category->name}}</option>
+                   @endforeach
                </select>
             </div>
-            <div class="form-group">
-                <label for="" class="form-label">Título</label>
-                <input type="text" class="form-control">
-            </div>
+           
             <div class="form-group">
                 <label for="" class="form-label">Descrição</label>
-                <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                <textarea name="" class="form-control" id="" cols="30" rows="10">{{$post->description}}</textarea>
             </div>
             <div class="form-group mt-3">
                <button class="btn btn-primary">Enviar</button>
