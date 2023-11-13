@@ -44,9 +44,21 @@
                         <td>{{$post->category_id}}</td>
                         <td>{{date('d/m/Y', strtotime($post->created_at))}}</td>
                         <td>
-                            <a href="{{route('posts.show', $post->id)}}" class="btn-sm btn-success">Listar</a>
-                            <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary">Editar</a>
-                            <a href="#" class="btn-sm btn-danger">Excluir</a>
+                            <form action="{{route('posts.show', $post->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('GET')
+                                <button type="submit" class="btn-sm btn-primary">Listar</button>
+                            </form>
+                            <form action="{{route('posts.edit', $post->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn-sm btn-success">Editar</button>
+                            </form>
+                            <form action="{{route('posts.destroy', $post->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
