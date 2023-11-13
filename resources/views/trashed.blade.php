@@ -8,10 +8,11 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>Destruir as Postagens</h4>
+                    <h4>Postagens destruídas</h4>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <a href="" class="btn btn-success mx-1">Voltar</a>
+                    <a href="{{route('posts.create')}}" class="btn btn-success mx-1">Criar</a>
+                    <a href="#" class="btn btn-warning mx-1">Destruir</a>
                 </div>
 
             </div>
@@ -32,23 +33,35 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($posts as $post)
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{$post->id}}</th>
                         <td>
-                            <img src="https://picsum.photos/200" alt="" width="80">
+                            <img src="{{asset($post->image)}}" alt="" width="80">
                         </td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</td>
-                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        </td>
-                        <td>News</td>
-                        <td>10/10/2022</td>
+                        <td>{{$post->title}}</td>
+                        <td>{{$post->description}}</td>
+                        <td>{{$post->category_id}}</td>
+                        <td>{{date('d/m/Y', strtotime($post->created_at))}}</td>
                         <td>
-                            <a href="#" class="btn-sm btn-success">Listar</a>
-                            <a href="#" class="btn-sm btn-primary">Editar</a>
-                            <a href="#" class="btn-sm btn-danger">Excluir</a>
+                            <form action="{{route('posts.show', $post->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('GET')
+                                <button type="submit" class="btn-sm btn-primary">Listar</button>
+                            </form>
+                            <form action="{{route('posts.edit', $post->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn-sm btn-success">Editar</button>
+                            </form>
+                            <form action="{{route('posts.destroy', $post->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                            </form>
                         </td>
-
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

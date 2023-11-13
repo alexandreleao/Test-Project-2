@@ -17,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
 
 Route::resource('posts',PostController::class);
+

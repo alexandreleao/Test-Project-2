@@ -129,4 +129,10 @@ class PostController extends Controller
 
       return redirect()->route('posts.index');
     }
+
+    public function trashed()
+    {
+         $posts = Post::onlyTrashed()->get();
+         return view('trashed',compact('posts'));
+    }
 }
