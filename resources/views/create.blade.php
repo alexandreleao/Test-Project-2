@@ -16,7 +16,7 @@
                     <h4>Criação de Postagem</h4>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <a href="#" class="btn btn-success mx-1">Voltar</a>
+                    <a href="{{route('posts.index')}}" class="btn btn-success mx-1">Voltar</a>
                 </div>
             </div>
         </div>

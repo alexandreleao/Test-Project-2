@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(2);
 
         return view('index',compact('posts'));
     }
@@ -142,5 +142,18 @@ class PostController extends Controller
         $post->restore();
 
         return redirect()->back();
+    }
+
+    public function forceDelete($id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+
+        File::delete(public_path($post->image));
+        
+        $post->forceDelete();
+
+        return redirect()->back();
+
+        
     }
 }

@@ -41,7 +41,7 @@
                         </td>
                         <td>{{$post->title}}</td>
                         <td>{{$post->description}}</td>
-                        <td>{{$post->category_id}}</td>
+                        <td>{{$post->category->name}}</td>
                         <td>{{date('d/m/Y', strtotime($post->created_at))}}</td>
                         <td>
                             <div class="d-flex">
@@ -50,7 +50,7 @@
                                 @method('GET')
                                 <button type="submit" class="btn-sm btn-success">Restaurar</button>
                             </form>
-                            <form action="{{route('posts.destroy', $post->id)}}" method="POST" style="display: inline">
+                            <form action="{{route('posts.force_delete', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>

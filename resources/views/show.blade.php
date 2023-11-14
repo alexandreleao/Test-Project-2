@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
                     <a href="{{route('posts.create')}}" class="btn btn-success mx-1">Criar</a>
-                    <a href="#" class="btn btn-warning mx-1">Destruir</a>
+                    <a href="{{route('posts.trashed', $post->id)}}" class="btn btn-warning mx-1">Destruir</a>
                 </div>
 
             </div>
@@ -36,7 +36,7 @@
                         <td>
                             <a href="#" class="btn-sm btn-success">Listar</a>
                             <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary">Editar</a>
-                            <a href="#" class="btn-sm btn-danger">Excluir</a>
+                            <a href="{{route('posts.destroy', $post->id)}}" class="btn-sm btn-danger">Excluir</a>
                         </td>
                     </tr> --}}
                  <tr>
