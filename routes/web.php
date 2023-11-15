@@ -23,3 +23,6 @@ Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete']
 
 Route::resource('posts',PostController::class);
 
+Route::get('/unavailable', function () {
+   return view('unavailable');
+})->name('unavailable');
