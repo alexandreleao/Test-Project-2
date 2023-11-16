@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h1>Você não possui senha de acesso!</h1>
+<h1>Aqui é um profile</h1>
 
 @endsection
