@@ -51,7 +51,7 @@
                             </form>
                             <form action="{{route('posts.edit', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
-                                @method('PUT')
+                                @method('GET')
                                 <button class="btn-sm btn-success">Editar</button>
                             </form>
                             <form action="{{route('posts.destroy', $post->id)}}" method="POST" style="display: inline">
