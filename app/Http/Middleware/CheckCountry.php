@@ -15,16 +15,13 @@ class CheckCountry
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        $country =[
-            'us',
-            'uk',
-            'in',
-            'bd',
-            'pt-br'
-        ];
 
-        if(!in_array($request->country, $country)&& !request()->is('unavailable')){
+       /* if(!in_array($request->country, $country)&& !request()->is('unavailable')){
             return redirect()->route('unavailable');
+        }*/
+
+        if ($request->country && !in_array($request->country, array("us", "in", "afg", "pt-br"))) {
+            return redirect("unavailable");
         }
 
         return $next($request);
