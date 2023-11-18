@@ -12,16 +12,33 @@
     <nav class="navbar bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{route('posts.index')}}">Navbar</a>
-
+            <button class="btn btn-dark" id="dark-mode-button">
+             <i class="fas fa-moon"></i>
+            Modo Escuro
+        </button>
         </div>
     </nav>
 
     <div class="container">
        @yield('content') 
     </div>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script>
+    const darkModeButton = document.getElementById('dark-mode-button');
+    const body = document.querySelector('body');
+
+    darkModeButton.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+    });
+</script>
+<style>
+    .dark-mode {
+        background-color: #000;
+        color: #fff;
+    }
+</style>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,5 +41,6 @@ Route::get('/unavailable', function () {
 })->name('unavailable');
 
 Route::get('contact', function () {
-  return view('contact');
+    $posts = Post::all();
+  return view('contact',compact('posts'));
 }); 
