@@ -1,3 +1,5 @@
 <div>
-    <button>Submit1231</button>
+    <button>{{ $slot }}</button>
+    <button>{{ $slot }}</button>
+
 </div>
