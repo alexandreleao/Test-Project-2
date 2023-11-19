@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +46,11 @@ Route::get('contact', function () {
     $posts = Post::all();
   return view('contact',compact('posts'));
 }); 
+
+Route::get('sand-mail', function(){
+    Mail::raw('this is a test mail', function($message){
+        $message->to('test@gmail.com')->subject('h1 this is a test mail');
+    });
+
+    dd('success');
+});
