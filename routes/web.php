@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Mail\OrderShipped;
 use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -48,9 +49,11 @@ Route::get('contact', function () {
 }); 
 
 Route::get('sand-mail', function(){
-    Mail::raw('this is a test mail', function($message){
-        $message->to('test@gmail.com')->subject('h1 this is a test mail');
-    });
+    // Mail::raw('this is a test mail', function($message){
+    //     $message->to('test@gmail.com')->subject('h1 this is a test mail');
+    // });
+
+    Mail::send(new OrderShipped);
 
     dd('success');
 });
