@@ -70,7 +70,16 @@ Route::get('get-session', function(Request $request){
 });
 
 Route::get('save-session', function(Request $request){
-    // $request->session()->put(['user_status' => 'logged_in']);
+    session(['user_id' => '123']);
+    $request->session()->put(['user_status' => 'logged_in']);
     session(['user_ip'=> '123.33.11']);
+    return redirect('get-session');
+});
+
+Route::get('destroy-session', function(Request $request){
+    // $request->session()->forget(['user_status','user_ip']);
+    // session()->forget('user_status', 'user_ip);
+    session()->flush();
+    $request->session()->flush();
     return redirect('get-session');
 });
