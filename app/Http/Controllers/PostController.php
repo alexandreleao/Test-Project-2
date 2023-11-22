@@ -22,7 +22,11 @@ class PostController extends Controller
     public function index()
     {
      
-        $posts = Cache::remember('posts', 60*60, function () {
+        // $posts = Cache::remember('posts', 3, function () {
+        //     return Post::with('category')->paginate(2);
+        // });
+
+        $posts = Cache::rememberForever('posts', function () {
             return Post::with('category')->paginate(2);
         });
 
