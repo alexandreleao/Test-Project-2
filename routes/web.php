@@ -35,12 +35,16 @@ require __DIR__.'/auth.php';
 
 /** CRUD Routes */
 
+Route::group(['middleware' => 'auth'], function(){
 Route::get('/posts/trash',[PostController::class,'trshed'])->name('posts.trashed');
 Route::get('/posts/{id}/restore',[PostController::class,'restore'])->name('posts.restore');
 Route::get('/posts/{post}/forceDelete',[PostController::class,'forceDelete'])->name('posts.forceDelete');
 
 Route::resource('posts',PostController::class);
-
-Route::get('user-data', function(){
-  return auth()->user()->email;
 });
+
+
+
+// Route::get('user-data', function(){
+//   return auth()->user()->email;
+// });
