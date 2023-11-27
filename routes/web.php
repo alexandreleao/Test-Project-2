@@ -41,6 +41,7 @@ Route::get('/posts/{id}/restore',[PostController::class,'restore'])->name('posts
 Route::get('/posts/{post}/forceDelete',[PostController::class,'forceDelete'])->name('posts.forceDelete');
 
 Route::resource('posts',PostController::class);
+
 });
 
 
