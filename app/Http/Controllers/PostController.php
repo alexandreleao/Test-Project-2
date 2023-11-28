@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {   
-        $this->authorize('create_post');
+        $this->authorize('create', Post::class);
         //Carregamento das categorias
         $categories = Category::all();
         return view('create',compact('categories'));
@@ -49,7 +49,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create_post');
+        $this->authorize('create', Post::class);
         //Validações
       $request->validate([
         'image' => ['required', 'max:2028', 'image'],
@@ -78,7 +78,7 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {  // $this->authorize('edit_post');
+    {  $this->authorize('edit', Post::class);
 
         $post = Post::findOrfail($id);
         return view('show',compact('post'));
@@ -89,9 +89,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $this->authorize('edit_post');
-
         $post = Post::findOrfail($id);
+        $this->authorize('update', $post);
         $categories = Category::all();
         return view('edit',compact('post', 'categories'));
     }
@@ -101,7 +100,9 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->authorize('edit_post');
+        $post = Post::findOrfail($id);
+
+        $this->authorize('update', $post);
         //Validações
 
         $request->validate([
@@ -112,8 +113,7 @@ class PostController extends Controller
 
       
 
-        $post = Post::findOrfail($id);
-
+        
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => ['required', 'max:2028', 'image'],
@@ -144,9 +144,10 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-     $this->authorize('delete_post');
+    $post = Post::findOrfail($id);
+     $this->authorize('delete', $post);
 
-      $post = Post::findOrfail($id);
+     
       $post->delete();
 
       return redirect()->route('posts.index');
@@ -154,7 +155,7 @@ class PostController extends Controller
 
     public function trashed()
     {   
-        $this->authorize('delete_post');
+        $this->authorize('delete', Post::class);
 
          $posts = Post::onlyTrashed()->get();
          return view('trashed',compact('posts'));
@@ -162,7 +163,7 @@ class PostController extends Controller
 
     public function restore($id)
     {   
-        $this->authorize('delete_post');
+        $this->authorize('delete', Post::class);
 
         $post = Post::onlyTrashed()->findOrFail($id);
         $post->restore();
@@ -172,7 +173,7 @@ class PostController extends Controller
 
     public function forceDelete($id)
     {
-        $this->authorize('delete_post');
+        $this->authorize('delete', Post::class);
 
         $post = Post::onlyTrashed()->findOrFail($id);
 

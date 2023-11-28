@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         //
+        Post::class => PostPolicy::class,
     ];
 
     /**
@@ -29,15 +30,15 @@ class AuthServiceProvider extends ServiceProvider
          * 3. delete_post
          */
 
-        Gate::define('create_post', function ($user) {
-            return Auth::user()->is_admin;
-        });
-        Gate::define('edit_post', function ($user) {
-            return Auth::user()->is_admin;
-        });
+        // Gate::define('create_post', function ($user) {
+        //     return Auth::user()->is_admin;
+        // });
+        // Gate::define('edit_post', function ($user) {
+        //     return Auth::user()->is_admin;
+        // });
 
-        Gate::define('delete_post', function ($user) {
-            return Auth::user()->is_admin;
-        });
+        // Gate::define('delete_post', function ($user) {
+        //     return Auth::user()->is_admin;
+        // });
     }
 }

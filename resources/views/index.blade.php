@@ -11,7 +11,7 @@
                     <h4>Todas as Postagens</h4>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    @can('create_post')
+                    @can('create',\App\Models\Post::class)
                     <a href="{{route('posts.create')}}" class="btn btn-success mx-1">Criar</a>
                     <a href="{{route('posts.trashed')}}" class="btn btn-warning mx-1">Destruir</a>
                     @endcan
@@ -54,14 +54,14 @@
                                 <button type="submit" class="btn-sm btn-primary">Listar</button>
                             </form>
                            
-                            @can('edit_post')
+                            @can('update',$post)
                             <form action="{{route('posts.edit', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
                                 @method('GET')
                                 <button class="btn-sm btn-success">Editar</button>
                             </form>
                             @endcan
-                            @can('delete_post')
+                            @can('delete',$post)
                             <form action="{{route('posts.destroy', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
                                 @method('DELETE')
