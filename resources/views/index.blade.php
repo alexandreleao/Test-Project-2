@@ -11,8 +11,11 @@
                     <h4>Todas as Postagens</h4>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
+                    @can('create_post')
                     <a href="{{route('posts.create')}}" class="btn btn-success mx-1">Criar</a>
                     <a href="{{route('posts.trashed')}}" class="btn btn-warning mx-1">Destruir</a>
+                    @endcan
+                    
                 </div>
 
             </div>
@@ -29,7 +32,7 @@
                         <th scope="col" style="width: 30%">Descrição</th>
                         <th scope="col" style="width: 10%">Categoria</th>
                         <th scope="col" style="width: 10%">Data de Publicação</th>
-                        <th scope="col" style="width: 20%">Ação</th>
+                        <th scope="col" style="width: 20%">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,21 +47,27 @@
                         <td>{{$post->category->name}}</td>
                         <td>{{date('d/m/Y', strtotime($post->created_at))}}</td>
                         <td>
+                          
                             <form action="{{route('posts.show', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
                                 @method('GET')
                                 <button type="submit" class="btn-sm btn-primary">Listar</button>
                             </form>
+                           
+                            @can('edit_post')
                             <form action="{{route('posts.edit', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
                                 @method('GET')
                                 <button class="btn-sm btn-success">Editar</button>
                             </form>
+                            @endcan
+                            @can('delete_post')
                             <form action="{{route('posts.destroy', $post->id)}}" method="POST" style="display: inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
                             </form>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach

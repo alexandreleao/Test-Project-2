@@ -78,8 +78,8 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {   $this->authorize('edit_post');
-        
+    {  // $this->authorize('edit_post');
+
         $post = Post::findOrfail($id);
         return view('show',compact('post'));
     }
