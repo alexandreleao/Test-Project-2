@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Jobs\SendMail;
 use App\Mail\PostPublished;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -67,3 +68,10 @@ Route::get('user-register', function(){
      event(new UserRegisterd($email));
      dd('message send');
 });
+
+Route::get('greeting/{locale}', function($locale){
+   
+    App::setLocale($locale);
+   
+    return view('greeting');
+})->name('greeting');
